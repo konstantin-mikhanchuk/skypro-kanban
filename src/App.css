@@ -51,6 +51,22 @@ body {
     background-color: #F1F1F1;
 }
 
+
+.loading-message {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 150px;
+  color: #94A6BE;
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.4px;
+  text-transform: uppercase;
+}
+
 .container {
     max-width: 1260px;
     width: 100%;
