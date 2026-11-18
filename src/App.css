@@ -1,11 +1,24 @@
+._orange {
+    background-color: #FFE4C2;
+    color: #FF6D00;
+}
+
+._green {
+    background-color: #B4FDD1;
+    color: #06B16E;
+}
+
+._purple {
+    background-color: #E9D4FF;
+    color: #9A48F1;
+}
+
 .pop-user-set:target,
 .pop-exit:target,
 .pop-new-card:target,
 .pop-browse:target {
     display: block;
 }
-
-
 
 ._gray {
     background: #94A6BE;
@@ -102,7 +115,7 @@
     line-height: 21px;
     font-weight: 500;
     letter-spacing: -0.14px;
-    color: #FFFFFF;
+    color: #565EEF;
 }
 .pop-exit__exit-no a {
     width: 100%;
@@ -550,13 +563,6 @@
 ._hide {
     display: none;
 }
-
-
-
-
-
-
-
 
 @media screen and (max-width: 660px) {
     .pop-new-card {
