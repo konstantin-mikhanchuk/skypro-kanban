@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Container } from "../../styled/Common.styled";
 import * as S from "./Header.styled";
 
@@ -14,20 +15,20 @@ function Header() {
           <Container>
             <S.HeaderBlock>
               <S.HeaderLogo>
-                <a href="" target="_self">
+                <Link to="/">
                   <img src="images/logo.png" alt="logo" />
-                </a>
+                </Link>
               </S.HeaderLogo>
               <S.HeaderLogo $isDark>
-                <a href="" target="_self">
+                <Link to="/">
                   <img src="images/logo_dark.png" alt="logo" />
-                </a>
+                </Link>
               </S.HeaderLogo>
               <S.HeaderNav>
                 <S.HeaderBtnMainNew
                   id="btnMainNew"
                 >
-                  <a href="#popNewCard">Создать новую задачу</a>
+                  <Link to="/new-card">Создать новую задачу</Link>
                 </S.HeaderBtnMainNew>
                 <S.HeaderUser href="#" onClick={toggleUserPopup}>
                   Ivan Ivanov
@@ -50,7 +51,7 @@ function Header() {
                     />
                   </S.PopUserSetTheme>
                   <button type="button">
-                    <a href="#popExit">Выйти</a>
+                    <Link to="/exit">Выйти</Link>
                   </button>
                   </S.HeaderPopUserSet>
                 )}
