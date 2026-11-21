@@ -1,7 +1,7 @@
 import PopUser from "../components/PopUser/PopUser";
 
-function ExitPage({ setIsAuth }) {
-  return <PopUser setIsAuth={setIsAuth} />;
+function ExitPage({ onLogout }) {
+  return <PopUser onLogout={onLogout} />;
 }
 
 export default ExitPage;

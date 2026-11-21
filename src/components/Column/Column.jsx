@@ -10,9 +10,9 @@ function Column({ title, cardList }) {
       <S.Cards>
         {cardList.map((card) => (
           <Card
-            key={card.id}
-            id={card.id}
-            theme={card.theme}
+            key={card._id}
+            id={card._id}
+            theme={card.topic}
             title={card.title}
             date={card.date}
           />

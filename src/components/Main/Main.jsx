@@ -9,12 +9,16 @@ const statusList = [
   "Готово",
 ];
 
-function Main({ cardList, isLoading }) {
+function Main({ cardList, isLoading, error }) {
   return (
     <S.Main>
       <Container>
         <S.MainBlock>
-          {isLoading ? (
+          {error ? (
+            <S.LoadingMessage>
+              <p>Ошибка загрузки: {error}</p>
+            </S.LoadingMessage>
+          ) : isLoading ? (
             <S.LoadingMessage>
               <p>Данные загружаются...</p>
             </S.LoadingMessage>

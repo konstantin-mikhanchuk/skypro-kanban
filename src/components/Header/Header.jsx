@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Container } from "../../styled/Common.styled";
 import * as S from "./Header.styled";
 
-function Header() {
+function Header({userData}) {
     const [ isUserOpen, setIsUserOpen ] = useState(false);
     const toggleUserPopup = (e) => {
         e.preventDefault();
@@ -25,23 +25,22 @@ function Header() {
                 </Link>
               </S.HeaderLogo>
               <S.HeaderNav>
-                <S.HeaderBtnMainNew
-                  id="btnMainNew"
-                >
+                <S.HeaderBtnMainNew id="btnMainNew">
                   <Link to="/new-card">Создать новую задачу</Link>
                 </S.HeaderBtnMainNew>
                 <S.HeaderUser href="#" onClick={toggleUserPopup}>
-                  Ivan Ivanov
+                  {userData?.name || "Пользователь"}
                 </S.HeaderUser>
                 
                 
                 {isUserOpen && (
-                  <S.HeaderPopUserSet
-                  id="user-set-target"
-                  >
-                  {/* <a href="">x</a> */}
-                  <S.PopUserSetName>Ivan Ivanov</S.PopUserSetName>
-                  <S.PopUserSetMail>ivan.ivanov@gmail.com</S.PopUserSetMail>
+                  <S.HeaderPopUserSet id="user-set-target" >
+                  <S.PopUserSetName>
+                    {userData?.name || "Пользователь"}
+                  </S.PopUserSetName>
+                  <S.PopUserSetMail>
+                    {userData?.login || ""}
+                  </S.PopUserSetMail>
                   <S.PopUserSetTheme>
                     <p>Темная тема</p>
                     <input

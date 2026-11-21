@@ -1,11 +1,11 @@
 import { Link, useNavigate } from "react-router-dom";
 
-function PopUser({ setIsAuth }) {
+function PopUser({ onLogout }) {
   const navigate = useNavigate();
 
   const handleLogout = (e) => {
     e.preventDefault();
-    setIsAuth(false);
+    onLogout();
     navigate("/login");
   };
 
