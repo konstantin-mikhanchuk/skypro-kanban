@@ -6,6 +6,17 @@ const themeColors = {
   Copywriting: "_purple",
 };
 
+function formatDate(dateString) {
+  if (!dateString) return "";
+  const date = new Date(dateString);
+  if (Number.isNaN(date.getTime())) return dateString;
+  return date.toLocaleDateString("ru-RU", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "2-digit",
+  });
+}
+
 function Card({ id, theme, title, date }) {
   const colorClass = themeColors[theme] || "_orange";
   return (
@@ -56,7 +67,7 @@ function Card({ id, theme, title, date }) {
                                 </clipPath>
                               </defs>
                             </svg>
-                            <p>{date}</p>
+                            <p>{formatDate(date)}</p>
                           </S.CardDate>
                         </S.CardContent>
                       </S.CardsCard>

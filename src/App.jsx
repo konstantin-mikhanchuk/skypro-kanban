@@ -3,12 +3,36 @@ import "./App.css";
 import { GlobalStyle } from "./styled/GlobalStyle";
 import AppRoutes from "./components/AppRoutes/AppRoutes";
 
+function getUserFromLocalStorage() {
+    try {
+        const savedUser = localStorage.getItem("user");
+        return savedUser ? JSON.parse(savedUser) : null;
+    } catch {
+        return null;
+    }     
+}
+
+
+
 function App() {
-    const [ isAuth, setIsAuth ] = useState(false)
+    const [userData, setUserData] = useState(getUserFromLocalStorage);
+    
+    const handleLoginUser = (newUser) => {
+    setUserData(newUser);
+    localStorage.setItem("user", JSON.stringify(newUser));
+};
+
+    const handleLogoutUser = () => {
+        setUserData(null);
+        localStorage.removeItem("user");
+    }
+
     return (
         <>
             <GlobalStyle/>
-            <AppRoutes isAuth={isAuth} setIsAuth={setIsAuth}/>
+            <AppRoutes userData={userData}
+                       onLogin={handleLoginUser}
+                       onLogout={handleLogoutUser}/>
         </>
     )
 }
