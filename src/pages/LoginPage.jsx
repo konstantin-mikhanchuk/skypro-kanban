@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 import { signIn } from "../services/auth";
 import * as S from "./Auth.styled";
 
-function LoginPage({onLogin}) {
+function LoginPage() {
     const navigate = useNavigate();
+
+    const { loginUser } = useContext(AuthContext);
 
     const [formData, setFormData] = useState({
       login: "",
@@ -31,7 +34,7 @@ function LoginPage({onLogin}) {
       try {
         setIsSubmitting(true);
         const data = await signIn(formData);
-        onLogin(data.user);
+        loginUser(data.user);
         navigate("/");
       } catch (err) {
         setError(err.message);

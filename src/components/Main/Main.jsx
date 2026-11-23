@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import { TaskContext } from "../../context/TaskContext";
 import Column from "../Column/Column";
 import { Container } from "../../styled/Common.styled";
 import * as S from "./Main.styled";
@@ -9,7 +11,8 @@ const statusList = [
   "Готово",
 ];
 
-function Main({ cardList, isLoading, error }) {
+function Main() {
+  const { tasks, isLoading, error } = useContext(TaskContext);
   return (
     <S.Main>
       <Container>
@@ -28,7 +31,7 @@ function Main({ cardList, isLoading, error }) {
                 <Column
                   key={status}
                   title={status}
-                  cardList={cardList.filter((card) => card.status === status)}
+                  cardList={tasks.filter((card) => card.status === status)}
                 />
               ))}
             </S.MainContent>

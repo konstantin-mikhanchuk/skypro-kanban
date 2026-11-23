@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 import { Container } from "../../styled/Common.styled";
 import * as S from "./Header.styled";
 
-function Header({userData}) {
+function Header() {
+    const { userData } = useContext(AuthContext);
     const [ isUserOpen, setIsUserOpen ] = useState(false);
     const toggleUserPopup = (e) => {
         e.preventDefault();
@@ -16,12 +18,12 @@ function Header({userData}) {
             <S.HeaderBlock>
               <S.HeaderLogo>
                 <Link to="/">
-                  <img src="images/logo.png" alt="logo" />
+                  <img src="/images/logo.png" alt="logo" />
                 </Link>
               </S.HeaderLogo>
               <S.HeaderLogo $isDark>
                 <Link to="/">
-                  <img src="images/logo_dark.png" alt="logo" />
+                  <img src="/images/logo_dark.png" alt="logo" />
                 </Link>
               </S.HeaderLogo>
               <S.HeaderNav>

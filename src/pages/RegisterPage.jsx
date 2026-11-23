@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 import { signUp } from "../services/auth";
 import * as S from "./Auth.styled";
 
-function RegisterPage({ onLogin }) {
+function RegisterPage() {
   const navigate = useNavigate();
+  const { loginUser } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -36,7 +38,7 @@ function RegisterPage({ onLogin }) {
     try {
       setIsSubmitting(true);
       const data = await signUp(formData);
-      onLogin(data.user);
+      loginUser(data.user);
       navigate("/");
     } catch (err) {
       setError(err.message);
