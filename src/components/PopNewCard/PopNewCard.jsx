@@ -9,6 +9,7 @@ function PopNewCard() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [topic, setTopic] = useState("Web Design");
+  const [date, setDate] = useState("");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -28,7 +29,7 @@ function PopNewCard() {
         description: description.trim(),
         topic,
         status: "Без статуса",
-        date: new Date().toISOString(),
+        date: date || new Date().toISOString(),
       })
       navigate("/")
     } catch (err) {
@@ -37,9 +38,6 @@ function PopNewCard() {
       setIsSubmitting(false)
     }
   };
-
-
-
 
   return (
         <div className="pop-new-card" id="popNewCard" style={{ display: "block" }}>
@@ -85,7 +83,10 @@ function PopNewCard() {
                       ></textarea>
                     </div>
                   </form>
-                  <Calendar />
+                  <Calendar 
+                  selectedDate={date}
+                  setSelectedDate={setDate}
+                  />
                 </div>
                 <div className="pop-new-card__categories categories">
                   <p className="categories__p subttl">Категория</p>

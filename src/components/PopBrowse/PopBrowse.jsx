@@ -25,12 +25,14 @@ function PopBrowse({ cardId }) {
   const [isEdit, setIsEdit] = useState(false);
   const [status, setStatus] = useState("Без статуса");
   const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
     if (currentTask) {
       setStatus(currentTask.status);
       setDescription(currentTask.description || "");
+      setDate(currentTask.date || "");
     }
   }, [currentTask])
 
@@ -43,7 +45,7 @@ function PopBrowse({ cardId }) {
       await editTask(cardId, {
         title: currentTask.title,
         topic: currentTask.topic,
-        date: currentTask.date,
+        date,
         status,
         description,
       });
@@ -71,6 +73,7 @@ function PopBrowse({ cardId }) {
       if (currentTask) {
         setStatus(currentTask.status);
         setDescription(currentTask.description || "");
+        setDate(currentTask.date || "");
       }
       setIsEdit(false);
     };
@@ -130,7 +133,11 @@ function PopBrowse({ cardId }) {
                       ></textarea>
                     </div>
                   </form>
-                  <Calendar />
+                  <Calendar
+                    selectedDate={date}
+                    setSelectedDate={setDate}
+                    isReadOnly={!isEdit} 
+                  />
                 </div>
                 <div className="theme-down__categories theme-down">
                   <p className="categories__p subttl">Категория</p>
