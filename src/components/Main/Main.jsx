@@ -23,9 +23,18 @@ function Main() {
             </S.LoadingMessage>
           ) : isLoading ? (
             <S.LoadingMessage>
-              <p>Данные загружаются...</p>
+              <S.LoaderDots>
+                <S.LoaderSquare $bg="#FF6D00" $delay="0s" />
+                <S.LoaderSquare $bg="#06B16E" $delay="0.2s" />
+                <S.LoaderSquare $bg="#9A48F1" $delay="0.4s" />
+              </S.LoaderDots>
+              <p>Данные загружаются</p>
             </S.LoadingMessage>
-          ) : (
+          ) : tasks.length === 0 ? (
+            <S.LoadingMessage>
+              <p>Новых задач нет</p>
+            </S.LoadingMessage>
+          ): (
             <S.MainContent>
               {statusList.map((status) => (
                 <Column
