@@ -1,11 +1,14 @@
+import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
-function PopUser({ onLogout }) {
+function PopUser() {
   const navigate = useNavigate();
+  const { logoutUser } = useContext(AuthContext);
 
   const handleLogout = (e) => {
     e.preventDefault();
-    onLogout();
+    logoutUser();
     navigate("/login");
   };
 

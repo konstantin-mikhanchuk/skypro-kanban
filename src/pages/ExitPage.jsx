@@ -1,7 +1,7 @@
 import PopUser from "../components/PopUser/PopUser";
 
-function ExitPage({ onLogout }) {
-  return <PopUser onLogout={onLogout} />;
+function ExitPage() {
+  return <PopUser />;
 }
 
 export default ExitPage;

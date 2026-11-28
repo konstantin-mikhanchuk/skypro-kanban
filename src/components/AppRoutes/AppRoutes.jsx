@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { Routes, Route } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import MainPage from "../../pages/MainPage";
 import ExitPage from "../../pages/ExitPage";
@@ -8,21 +10,22 @@ import LoginPage from "../../pages/LoginPage";
 import RegisterPage from "../../pages/RegisterPage";
 import NotFoundPage from "../../pages/NotFoundPage";
 
-function AppRoutes({ userData, onLogin, onLogout }) {
+function AppRoutes() {
+  const { userData } = useContext(AuthContext);
   const isAuth = Boolean(userData);
   return (
     <Routes>
       <Route element={<PrivateRoute isAuth={isAuth} />}>
-        <Route path="/" element={<MainPage userData={userData} />}>
-          <Route path="exit" element={<ExitPage onLogout={onLogout} />} />
+        <Route path="/" element={<MainPage />}>
+          <Route path="exit" element={<ExitPage />} />
           <Route path="new-card" element={<NewCardPage />} />
           <Route path="card/:id" element={<CardPage />} />
         </Route>
       </Route>
-      <Route path="/login" element={<LoginPage onLogin={onLogin} />} />
+      <Route path="/login" element={<LoginPage />} />
       <Route
         path="/register"
-        element={<RegisterPage onLogin={onLogin} />}
+        element={<RegisterPage />}
       />
       <Route path="*" element={<NotFoundPage />} />
 
