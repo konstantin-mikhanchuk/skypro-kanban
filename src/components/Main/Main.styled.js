@@ -1,4 +1,15 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+
+const pulseSquare = keyframes`
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.3) translateY(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) translateY(-8px);
+  }
+`;
 
 export const Main = styled.main`
   width: 100%;
@@ -25,6 +36,7 @@ export const MainContent = styled.div`
 export const LoadingMessage = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-top: 150px;
@@ -35,4 +47,22 @@ export const LoadingMessage = styled.div`
   line-height: 1;
   letter-spacing: -0.4px;
   text-transform: uppercase;
+`;
+
+export const LoaderDots = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 24px;
+`;
+
+export const LoaderSquare = styled.span`
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background-color: ${({ $bg }) => $bg || "#565EEF"};
+  animation: ${pulseSquare} 1.4s infinite ease-in-out;
+  animation-delay: ${({ $delay }) => $delay || "0s"};
 `;

@@ -1,16 +1,31 @@
-# React + Vite
+# Skypro Kanban — Таск-трекер (Канбан-доска)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Веб-приложение для управления задачами по методологии Канбан, разработанное на React. Позволяет планировать работу, распределять задачи по этапам выполнения, назначать категории и отслеживать сроки исполнения.
 
-Currently, two official plugins are available:
+## Основной функционал
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Авторизация и регистрация пользователей:**
+- Регистрация нового аккаунта и вход в систему через API (POST /api/user, POST /api/user/login).
+- Хранение данных пользователя и Bearer-токена в localStorage для сохранения сессии после перезагрузки страницы.
+- Защищённые маршруты (PrivateRoute) с автоматическим перенаправлением неавторизованных пользователей на страницу входа /login.
+- Выход из аккаунта с подтверждением и очисткой сессии.
+- **Управление задачами (CRUD):**
+- **Просмотр доски:** автоматическая загрузка задач с сервера (GET /api/kanban) и распределение по 5 колонкам статусов (_«Без статуса»_, _«Нужно сделать»_, _«В работе»_, _«Тестирование»_, _«Готово»_).
+- **Создание задачи:** модальное окно с вводом названия, описания, выбором категории (_Web Design_, _Research_, _Copywriting_) и срока исполнения (POST /api/kanban).
+- **Просмотр и редактирование задачи:** открытие карточки по динамическому маршруту /card/:id, изменение статуса, описания и даты выполнения (PUT /api/kanban/:id).
+- **Удаление задачи:** удаление карточки с мгновенным обновлением доски (DELETE /api/kanban/:id).
 
-## React Compiler
+## Дополнительные фичи и особенности реализации
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Интерактивный календарь:** выбор даты выполнения задачи с навигацией по месяцам, подсветкой текущего и выбранного дня, а также блокировкой изменений в режиме просмотра.
+- **Валидация форм и обработка ошибок:** защита от отправки пустых полей и строк из одних пробелов, отображение понятных сообщений об ошибках валидации и сбоях сети/сервера прямо в интерфейсе.
+- **Состояния интерфейса:**
+- Кастомная CSS-анимация загрузки данных на базе keyframes в Styled Components.
+- Корректная обработка пустого списка задач с отображением информационного сообщения _«Новых задач нет»_.
+- Стилизованная страница 404 для несуществующих маршрутов со ссылкой возврата на главную.
+- **Архитектура и стек технологий:**
+- **React 18** + **Vite**
+- **React Router DOM** (маршрутизация, вложенные модальные окна через Outlet, динамические параметры useParams)
+- **React Context API** (AuthContext и TaskContext для глобального управления состоянием без prop drilling)
+- **Axios** (единый API-клиент и сервисный слой в src/services/)
+- **Styled Components** (компонентный подход к стилизации и глобальные стили)
